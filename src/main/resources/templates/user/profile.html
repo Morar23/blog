@@ -1,0 +1,35 @@
+<main>
+    <div class="container body-container mt-4">
+        <div class="row">
+            <div id="main" class="col-sm-9 mx-auto">
+                <div class="text-center mb-4">
+                    <img th:if="${user.picture}" th:src="@{'data:image/jpeg;base64,'+${user.picture}}" class="rounded-circle" height="150" width="150" alt="User picture"/>
+                    <h3 class="mt-3" th:text="${user.fullName}"></h3>
+                    <p class="text-muted" th:text="${user.email}"></p>
+                    <a class="btn btn-primary" th:href="@{/user/edit/{id}(id=${user.id})}">Edit Profile</a>
+                </div>
+
+                <div class="row">
+                    <th:block th:each="article : ${articles}">
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <img th:if="${article.picture}" id="preview-image" class="card-img-top img-fluid" th:src="@{'data:image/jpeg;base64,'+${article.picture}}" alt="Article image"/>
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${article.title}"></h5>
+                                    <p class="card-text text-truncate" th:text="${article.content}"></p>
+                                    <small class="text-muted" th:text="${article.author.fullName}"></small>
+                                    <div class="mt-2">
+                                        <th:block th:each="tag:${article.tags}">
+                                            <a class="btn btn-light btn-sm me-1 mb-1" th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
+                                        </th:block>
+                                    </div>
+                                    <a class="btn btn-outline-primary mt-3" th:href="@{/article/{id}(id=${article.id})}">Read more &raquo;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

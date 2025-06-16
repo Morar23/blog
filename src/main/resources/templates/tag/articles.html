@@ -1,0 +1,30 @@
+<main>
+    <div class="container body-content" style="margin-top: 30px;">
+        <h1 style="font-size: 28px; font-weight: bold; margin-bottom: 20px; color: #333;">
+            Search by Tag - <th:block th:text="${tag.name}"></th:block>
+        </h1>
+        <div class="row">
+            <th:block th:each="article : ${tag.articles}">
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+                    <div class="card" style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <header class="card-header" style="background-color: #f8f9fa; padding: 15px;">
+                            <h2 th:text="${article.title}" style="margin: 0; font-size: 20px; color: #333;"></h2>
+                        </header>
+                        <div class="card-body" style="padding: 15px;">
+                            <p th:text="${article.summary}" style="color: #555; line-height: 1.6; margin-bottom: 15px;"></p>
+                            <small class="author" style="display: block; margin-bottom: 10px; color: #777;" th:text="${article.author.fullName}"></small>
+                            <div style="margin-bottom: 15px;">
+                                <th:block th:each="tag : ${article.tags}">
+                                    <a class="btn btn-secondary btn-sm" th:href="@{/tag/{name}(name=${tag.name})}" style="margin-right: 5px; text-decoration: none; background-color: #6c757d; color: #fff; border-radius: 5px; padding: 5px 10px;" th:text="${tag.name}"></a>
+                                </th:block>
+                            </div>
+                        </div>
+                        <footer class="card-footer" style="background-color: #f8f9fa; padding: 10px; text-align: right;">
+                            <a class="btn btn-primary btn-sm" th:href="@{/article/{id}(id=${article.id})}" style="text-decoration: none; color: #fff; background-color: #007bff; border: none; border-radius: 5px; padding: 5px 10px; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';">Read more &raquo;</a>
+                        </footer>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>

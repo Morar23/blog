@@ -1,0 +1,57 @@
+<main>
+    <div class="container body-content" style="margin-top: 30px;">
+        <div class="well" style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff;">
+            <form class="form-horizontal" th:action="@{/article/create}" method="POST" enctype="multipart/form-data">
+                <fieldset>
+                    <legend style="font-size: 24px; font-weight: bold; color: #333;">New Post</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_title">Article Title</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="article_title" placeholder="Article Title" name="title" required="required"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_picture">Article Picture</label>
+                        <div class="col-sm-6">
+                            <input type="file" class="form-control" id="article_picture" placeholder="Article Picture" multiple accept="image/*,image/jpeg" name="picture"/>
+                            <small class="form-text text-muted">You can upload multiple images.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_content">Content</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" rows="6" id="article_content" name="content" placeholder="Enter content here..." required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_tags">Tags</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="article_tags" placeholder="Tags (comma separated)" name="tagString"/>
+                            <small class="form-text text-muted">Add tags separated by commas.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_category">Category</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="article_category" name="categoryId" required="required">
+                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-4">
+                            <a class="btn btn-default" th:href="@{/}" style="margin-right: 10px; background-color: #f8f9fa; color: #333; border: none; border-radius: 5px; padding: 10px 20px; text-decoration: none;">Cancel</a>
+                            <input type="submit" class="btn btn-primary" value="Submit" style="background-color: #007bff; border: none; border-radius: 5px; padding: 10px 20px; color: #fff;"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>

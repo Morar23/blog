@@ -1,0 +1,32 @@
+<main>
+    <div class="container body-content">
+        <h1>Category - <th:block th:text="${category.name}"></th:block></h1>
+        <div class="row">
+            <th:block th:each="article : ${articles}">
+                <div class="col-md-6">
+                    <article>
+
+                        <header>
+                            <h2 th:text="${article.title}"></h2>
+                            <img th:if="${article.picture}" id="preview-image" class="img-fluid" th:src="@{'data:image/jpeg;base64,'+${article.picture}}" height="250" width="250" alt=""/>
+                        </header>
+
+                        <p class="line-clamp-3" th:text="${article.content}"></p>
+
+                        <small class="author" th:text="${article.author.fullName}"></small>
+                        <p>
+                            <a class="btn btn-default btn-xs" th:each="tag:${article.tags}" th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
+                        </p>
+
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs"
+                                   th:href="@{/article/{id}(id=${article.id})}">Read more &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>

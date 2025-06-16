@@ -1,0 +1,133 @@
+<main>
+    <div class="container body-content" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- Registration Card -->
+                <div class="card" style="border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div class="card-body">
+                        <form class="form-horizontal" th:action="@{/register}" method="post" enctype="multipart/form-data">
+                            <fieldset>
+                                <legend class="mb-4">Register</legend>
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="user_email">
+                                        <i class="fa fa-envelope"></i> Email
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control" id="user_email" placeholder="Email" name="email" required />
+                                    </div>
+                                </div>
+
+                                <!-- Full Name -->
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="user_fullname">
+                                        <i class="fa fa-user"></i> Full Name
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="user_fullname" placeholder="Full Name" name="fullName" required />
+                                    </div>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="user_password_first">
+                                        <i class="fa fa-lock"></i> Password
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" id="user_password_first" placeholder="Password" name="password" required />
+                                    </div>
+                                </div>
+
+                                <!-- Confirm Password -->
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="user_password_second">
+                                        <i class="fa fa-lock"></i> Confirm Password
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" id="user_password_second" placeholder="Confirm Password" name="confirmPassword" required />
+                                    </div>
+                                </div>
+
+                                <!-- Profile Picture -->
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="profile_picture">
+                                        <i class="fa fa-camera"></i> Profile Picture
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="file" class="form-control" id="profile_picture" name="picture" accept="image/*,image/jpeg" />
+                                    </div>
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="form-group">
+                                    <div class="col-sm-8 col-sm-offset-4">
+                                        <a class="btn btn-secondary" th:href="@{/}">Cancel</a>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Client-side validation for password match -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const password = document.getElementById('user_password_first');
+            const confirmPassword = document.getElementById('user_password_second');
+
+            function validatePassword() {
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity('Passwords do not match');
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            }
+
+            password.addEventListener('input', validatePassword);
+            confirmPassword.addEventListener('input', validatePassword);
+        });
+    </script>
+
+    <!-- FontAwesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</main>
+
+<style>
+    /* Style for the form */
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .card {
+        background-color: #f8f9fa;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #007bff, #0056b3);
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(45deg, #0056b3, #003d7a);
+    }
+
+    .btn-secondary {
+        border: 1px solid #ddd;
+        color: #333;
+    }
+
+    .btn-secondary:hover {
+        color: #000;
+        background-color: #e9ecef;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+</style>

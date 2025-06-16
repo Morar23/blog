@@ -1,0 +1,65 @@
+<main>
+    <div class="container body-content">
+        <div class="well" style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <form class="form-horizontal" th:action="@{/admin/users/edit/{id}(id=${user.id})}" method="post">
+                <fieldset>
+                    <legend>Edit User</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_email">Email</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="email" id="user_email" placeholder="Email" name="email"
+                                   required="required" th:value="${user.email}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_fullname">Full Name</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="text" id="user_fullname" placeholder="Full Name"
+                                   name="fullName" required="required" th:value="${user.fullName}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_password_first">Password</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="user_password_first" placeholder="Password"
+                                   name="password"/>
+                            <small class="text-muted">Leave blank if you do not want to change the password.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_password_second">Confirm Password</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="user_password_second" placeholder="Confirm Password"
+                                   name="confirmPassword"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="roles">Roles</label>
+                        <div class="col-sm-6">
+                            <th:block th:each="role : ${roles}">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" th:field="*{roles}" th:value="${role.id}" th:checked="${user.roles.contains(role)}"/>
+                                        <span th:text="${role.getSimpleName()}"></span>
+                                    </label>
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-4">
+                            <a class="btn btn-default" th:href="@{/admin/users/}">Cancel</a>
+                            <input value="Edit" type="submit" class="btn btn-success"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>
